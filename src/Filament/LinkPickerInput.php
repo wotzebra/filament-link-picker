@@ -1,10 +1,10 @@
 <?php
 
-namespace Codedor\LinkPicker\Filament;
+namespace Wotz\LinkPicker\Filament;
 
-use Codedor\LinkPicker\Facades\LinkCollection;
-use Codedor\LinkPicker\Link;
-use Codedor\LocaleCollection\Facades\LocaleCollection;
+use Wotz\LinkPicker\Facades\LinkCollection;
+use Wotz\LinkPicker\Link;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;

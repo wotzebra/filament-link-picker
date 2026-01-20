@@ -1,23 +1,23 @@
 <?php
 
-namespace Codedor\LinkPicker\Facades;
+namespace Wotz\LinkPicker\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \Codedor\LinkPicker\LinkCollection routes()
- * @method static null | \Codedor\LinkPicker\Link route(string $routeName)
- * @method static null | \Codedor\LinkPicker\Link cleanRoute(string $routeName)
- * @method static \Codedor\LinkPicker\LinkCollection addLink(\Codedor\LinkPicker\Link $link)
- * @method static \Codedor\LinkPicker\LinkCollection addGroup(string $group, iterable $links)
- * @method static \Codedor\LinkPicker\Link|null firstByCleanRouteName(string $routeName)
+ * @method static \Wotz\LinkPicker\LinkCollection routes()
+ * @method static null | \Wotz\LinkPicker\Link route(string $routeName)
+ * @method static null | \Wotz\LinkPicker\Link cleanRoute(string $routeName)
+ * @method static \Wotz\LinkPicker\LinkCollection addLink(\Wotz\LinkPicker\Link $link)
+ * @method static \Wotz\LinkPicker\LinkCollection addGroup(string $group, iterable $links)
+ * @method static \Wotz\LinkPicker\Link|null firstByCleanRouteName(string $routeName)
  *
- * @see \Codedor\LinkPicker\LinkCollection
+ * @see \Wotz\LinkPicker\LinkCollection
  */
 class LinkCollection extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Codedor\LinkPicker\LinkCollection::class;
+        return \Wotz\LinkPicker\LinkCollection::class;
     }
 }

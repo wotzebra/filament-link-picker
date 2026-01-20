@@ -5,7 +5,7 @@
 Install this package using composer:
 
 ```bash
-composer require codedor/filament-link-picker
+composer require wotz/filament-link-picker
 ```
 
 In an effort to align with Filament's theming methodology you will need to use a custom theme to use this plugin.
@@ -13,19 +13,11 @@ In an effort to align with Filament's theming methodology you will need to use a
 > **Note**
 > If you have not set up a custom theme and are using a Panel follow the instructions in the [Filament Docs](https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme) first. The following applies to both the Panels Package and the standalone Forms package.
 
-1. Import the plugin's stylesheet (if not already included) into your theme's css file.
+1. Import the plugin's views (if not already included) into your theme's css file.
 
 ```css
-@import '../../../../vendor/codedor/filament-link-picker/resources/css/plugin.css';
-```
 
-2. Add the plugin's views to your `tailwind.config.js` file.
-
-```js
-content: [
-    ...
-    './vendor/codedor/filament-link-picker/resources/**/*.blade.php',
-]
+@source '../../../../vendor/wotz/filament-link-picker/resources/views/**/*.blade.php';
 ```
 
 ## Basic usage, simple routes without parameters
@@ -108,7 +100,7 @@ LinkCollection::addAnchorLink(
 );
 ```
 
-This will fetch the [Architect](https://github.com/codedor/filament-architect) fields from the current page and use them as options for the anchor link. If you want to modify this behavior, you can add a `anchorList` method to your model:
+This will fetch the [Architect](https://github.com/wotzebra/filament-architect) fields from the current page and use them as options for the anchor link. If you want to modify this behavior, you can add a `anchorList` method to your model:
 
 ```php
 public function anchorList(): array
@@ -122,12 +114,12 @@ public function anchorList(): array
 
 ## The Link object
 
-You can pass a callback to the `linkPicker()` function, this callback has one parameter called `$link`, this is a `Codedor\LinkPicker\Link` object. With this object you can configure the link to your needs.
+You can pass a callback to the `linkPicker()` function, this callback has one parameter called `$link`, this is a `Wotz\LinkPicker\Link` object. With this object you can configure the link to your needs.
 
 For example, adding a label to make your link more readable in Filament:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])
@@ -142,7 +134,7 @@ Route::get('/', [HomeController::class, 'show'])
 If you use route model binding in your controller, the link picker will automatically build its schema according to the parameters of the route. However, you can still define the schema yourself if you want to. For example:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('{page:slug}', [PageController::class, 'show'])
@@ -160,7 +152,7 @@ Route::get('{page:slug}', [PageController::class, 'show'])
 You can set a label for your link, this will be shown in the link picker in Filament. For example:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])
@@ -173,7 +165,7 @@ Route::get('/', [HomeController::class, 'show'])
 You can set a description for your link, this will be shown in the link picker in Filament. For example:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])
@@ -186,7 +178,7 @@ Route::get('/', [HomeController::class, 'show'])
 You can group your links in Filament, this will make it easier to find them. For example:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])
@@ -199,7 +191,7 @@ Route::get('/', [HomeController::class, 'show'])
 If you want to replace the `Selected Parameters` description, you can override the default with the `->buildDescriptionUsing()` method. For example:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])
@@ -224,7 +216,7 @@ Route::get('blog/{category:slug}/{post:slug}', [PostController::class, 'show'])
 This route has two parameters but since the blogpost is linked to a category, there is no need to select the category in the link picker. You can use the `buildUsing` method to build the route for the link picker. For example:
 
 ```php
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\Facades\Route;
 
 Route::get('blog/{category:slug}/{post:slug}', [PostController::class, 'show'])
@@ -251,7 +243,7 @@ Route::get('blog/{category:slug}/{post:slug}', [PostController::class, 'show'])
 You can add the linkpicker field to your resource like this:
 
 ```php
-use Codedor\LinkPicker\Filament\LinkPickerInput;
+use Wotz\LinkPicker\Filament\LinkPickerInput;
 
 public static function form(Form $form): Form
 {

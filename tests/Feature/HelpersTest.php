@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 
 beforeEach(function () {
     registerRoute();

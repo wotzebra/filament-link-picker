@@ -1,7 +1,7 @@
 <?php
 
-use Codedor\LinkPicker\Facades\LinkCollection;
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Facades\LinkCollection;
+use Wotz\LinkPicker\Link;
 use Illuminate\Support\HtmlString;
 
 if (! function_exists('lroute')) {

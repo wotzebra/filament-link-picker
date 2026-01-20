@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\LinkPicker\Tests\Fixtures\Forms;
+namespace Wotz\LinkPicker\Tests\Fixtures\Forms;
 
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;

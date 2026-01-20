@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\LinkPicker\Http\Middleware;
+namespace Wotz\LinkPicker\Http\Middleware;
 
 use Closure;
 

@@ -1,6 +1,6 @@
 <?php
 
-use Codedor\LinkPicker\Link;
+use Wotz\LinkPicker\Link;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Collection;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Codedor\LinkPicker;
+namespace Wotz\LinkPicker;
 
-use Codedor\FilamentArchitect\Engines\Architect;
+use Wotz\FilamentArchitect\Engines\Architect;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
