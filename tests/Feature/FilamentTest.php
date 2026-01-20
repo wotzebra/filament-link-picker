@@ -3,11 +3,11 @@
 use Codedor\LinkPicker\Filament\LinkPickerInput;
 use Codedor\LinkPicker\Tests\Fixtures\Forms\Livewire;
 use Codedor\LinkPicker\Tests\Fixtures\Models\TestModel;
-use Filament\Forms\ComponentContainer;
+use Filament\Schemas\Schema;
 
 beforeEach(function () {
     $this->field = LinkPickerInput::make('link')
-        ->container(ComponentContainer::make(Livewire::make()))
+        ->container(Schema::make(Livewire::make()))
         ->model(TestModel::class);
 });
 

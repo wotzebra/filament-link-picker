@@ -24,9 +24,11 @@
 
                             <ul>
                                 @foreach ($routeDescription['parameters'] as $name => $value)
-                                    <li>
-                                        {{ ucfirst($name) }}: {{ $value }}
-                                    </li>
+                                    @if (filled($value))
+                                        <li>
+                                            {{ ucfirst($name) }}: {{ $value }}
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         @endif

@@ -5,14 +5,10 @@ namespace Codedor\LinkPicker\Filament;
 use Codedor\LinkPicker\Facades\LinkCollection;
 use Codedor\LinkPicker\Link;
 use Codedor\LocaleCollection\Facades\LocaleCollection;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
+use Filament\Schemas\Components\Grid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Arr;
@@ -31,7 +27,7 @@ class LinkPickerInput extends Field
         parent::setUp();
 
         $this->registerActions([
-            Action::make('link-picker-modal')
+            \Filament\Actions\Action::make('link-picker-modal')
                 ->label(fn ($state) => $state
                     ? __('filament-link-picker::input.edit link')
                     : __('filament-link-picker::input.select link')
@@ -39,76 +35,39 @@ class LinkPickerInput extends Field
                 ->icon(fn ($state) => $state ? 'heroicon-o-pencil' : 'heroicon-o-plus')
                 ->color('gray')
                 ->iconSize('sm')
-                ->fillForm(function (Get $get, Component $component, \Livewire\Component $livewire): array {
-                    $statePath = $component->getStatePath(false);
+                ->fillForm(fn (\Filament\Schemas\Components\Component $component): array => $component->getState() ?? [])
+                ->schema(function () {
+                    return [
+                        Grid::make(1)->schema(function (\Livewire\Component $livewire) {
+                            $mountedAction = Arr::last($livewire->mountedActions);
+                            $mountedActionIndex = array_key_last($livewire->mountedActions);
+                            $schema = $this->getFormSchemaForRoute($mountedAction['data']['route'] ?? null);
 
-                    $schema = $this->getFormSchemaForRoute($get("{$statePath}.route"));
+                            // since the fields are dynamic we have to fill the state manually,
+                            // else validation will fail because property is not in the state
+                            data_fill($livewire, "mountedActions.{$mountedActionIndex}.data.parameters", []);
+                            $schema->each(function (Field $field) use (&$livewire, $mountedActionIndex) {
+                                data_fill(
+                                    $livewire,
+                                    "mountedActions.{$mountedActionIndex}.data.{$field->statePath}",
+                                    null,
+                                );
+                            });
 
-                    $state = [
-                        'route' => $get("{$statePath}.route"),
-                        'newTab' => $get("{$statePath}.newTab"),
-                        'parameters' => $get("{$statePath}.parameters") ?: [],
+                            return $schema->toArray();
+                        }),
                     ];
-
-                    $actionNestingIndex = array_key_last($livewire->mountedFormComponentActions);
-
-                    $schema
-                        ->each(function (Field $field) use (&$state, $statePath, $get, $actionNestingIndex, $livewire) {
-                            $fieldStatePath = $field->statePath;
-
-                            data_fill(
-                                $state,
-                                $fieldStatePath,
-                                data_get(
-                                    $livewire->mountedFormComponentActionsData[$actionNestingIndex] ?? [],
-                                    "{$statePath}.{$fieldStatePath}"
-                                ) ?? $get("{$statePath}.{$fieldStatePath}") ?? null
-                            );
-                        });
-
-                    return $state;
                 })
-                ->form(function (Get $get, Component $component, \Livewire\Component $livewire, Form $form) {
-                    $statePath = $component->getStatePath(false);
-
-                    $actionNestingIndex = array_key_last($livewire->mountedFormComponentActions);
-
-                    $schema = $this->getFormSchemaForRoute(
-                        $livewire->mountedFormComponentActionsData[$actionNestingIndex]['route'] ?? $get("{$statePath}.route") ?? null
-                    );
-
-                    $state = $livewire->mountedFormComponentActionsData[$actionNestingIndex] ?? [];
-
-                    // since the fields are dynamic we have to fill the state manually,
-                    // else validation will fail because property is not in the state
-                    $schema->each(function (Field $field) use (&$state, $statePath, $get, $actionNestingIndex, $livewire) {
-                        $fieldStatePath = $field->statePath;
-
-                        data_fill(
-                            $state,
-                            $fieldStatePath,
-                            data_get(
-                                $livewire->mountedFormComponentActionsData[$actionNestingIndex] ?? [],
-                                "{$statePath}.{$fieldStatePath}"
-                            ) ?? $get("{$statePath}.{$fieldStatePath}") ?? null
-                        );
-                    });
-
-                    $livewire->mountedFormComponentActionsData[$actionNestingIndex] = $state;
-                    $form->fill($state);
-
-                    return $schema->toArray();
-                })
-                ->action(function (Set $set, array $data, Component $component) {
+                ->action(function (\Filament\Schemas\Components\Utilities\Set $set, array $data, \Filament\Schemas\Components\Component $component) {
                     $set($component->getStatePath(false), $data);
                 }),
 
-            Action::make('link-picker-clear')
+            \Filament\Actions\Action::make('link-picker-clear')
                 ->label(__('filament-link-picker::input.remove link'))
                 ->icon('heroicon-o-trash')
                 ->iconSize('sm')
                 ->color('danger')
-                ->action(function (Set $set) {
+                ->action(function (\Filament\Schemas\Components\Utilities\Set $set) {
                     $set($this->getStatePath(false), null);
                 }),
         ]);
@@ -216,8 +175,8 @@ class LinkPickerInput extends Field
 
             $schema->add(
                 Select::make('parameters.anchor')
-                    ->hidden(fn (Get $get) => ! $get("parameters.{$anchorData['parameter']}"))
-                    ->options(function (Get $get) use ($anchorData) {
+                    ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => ! $get("parameters.{$anchorData['parameter']}"))
+                    ->options(function (\Filament\Schemas\Components\Utilities\Get $get) use ($anchorData) {
                         /**
                          * @var Model $record
                          */
