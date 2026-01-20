@@ -1,8 +1,8 @@
 <?php
 
-use Wotz\LinkPicker\Link;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Support\Collection;
+use Wotz\LinkPicker\Link;
 
 it('can set and get route name', function () {
     $link = Link::make('route.name')->routeName('route.new-name');
