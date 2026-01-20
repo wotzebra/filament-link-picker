@@ -9,7 +9,7 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 You can install the package via composer:
 
 ```bash
-composer require codedor/filament-link-picker
+composer require wotz/filament-link-picker
 ```
 
 Optionally, you can publish the views using
@@ -21,7 +21,7 @@ php artisan vendor:publish --tag="filament-link-picker-views"
 ## Usage
 
 ```php
-\Codedor\LinkPicker\Filament\LinkPickerInput::make('route');
+\Wotz\LinkPicker\Filament\LinkPickerInput::make('route');
 ```
 
 ## Documentation
@@ -48,7 +48,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-If you discover any security-related issues, please email info@codedor.be instead of using the issue tracker.
+If you discover any security-related issues, please email info@whoownsthezebra.be instead of using the issue tracker.
 
 ## License
 

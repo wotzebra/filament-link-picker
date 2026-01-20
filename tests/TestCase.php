@@ -1,12 +1,12 @@
 <?php
 
-namespace Codedor\LinkPicker\Tests;
+namespace Wotz\LinkPicker\Tests;
 
-use Codedor\LinkPicker\Providers\LinkPickerServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Support\SupportServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Wotz\LinkPicker\Providers\LinkPickerServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -1,8 +1,8 @@
 <?php
 
-use Codedor\LinkPicker\Facades\LinkCollection;
-use Codedor\LinkPicker\Link;
 use Illuminate\Support\HtmlString;
+use Wotz\LinkPicker\Facades\LinkCollection;
+use Wotz\LinkPicker\Link;
 
 if (! function_exists('lroute')) {
     function lroute(null|string|array|Link $link, ?array $parameters = null, bool $withTarget = true): HtmlString|string|null

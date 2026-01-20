@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\LinkPicker\Tests\Fixtures\Http\Controllers;
+namespace Wotz\LinkPicker\Tests\Fixtures\Http\Controllers;
 
 class TestController
 {

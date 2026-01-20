@@ -1,9 +1,9 @@
 <?php
 
-use Codedor\LinkPicker\PackageChecker;
-use Codedor\LinkPicker\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 use Mockery\MockInterface;
+use Wotz\LinkPicker\PackageChecker;
+use Wotz\LinkPicker\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 

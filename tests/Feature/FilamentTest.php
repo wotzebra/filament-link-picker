@@ -1,9 +1,9 @@
 <?php
 
-use Codedor\LinkPicker\Filament\LinkPickerInput;
-use Codedor\LinkPicker\Tests\Fixtures\Forms\Livewire;
-use Codedor\LinkPicker\Tests\Fixtures\Models\TestModel;
 use Filament\Schemas\Schema;
+use Wotz\LinkPicker\Filament\LinkPickerInput;
+use Wotz\LinkPicker\Tests\Fixtures\Forms\Livewire;
+use Wotz\LinkPicker\Tests\Fixtures\Models\TestModel;
 
 beforeEach(function () {
     $this->field = LinkPickerInput::make('link')

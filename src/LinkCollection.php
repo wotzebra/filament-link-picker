@@ -1,8 +1,7 @@
 <?php
 
-namespace Codedor\LinkPicker;
+namespace Wotz\LinkPicker;
 
-use Codedor\FilamentArchitect\Engines\Architect;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -13,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Throwable;
+use Wotz\FilamentArchitect\Engines\Architect;
 
 /**
  * @template TKey of array-key

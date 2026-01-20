@@ -1,12 +1,12 @@
 <?php
 
-namespace Codedor\LinkPicker;
+namespace Wotz\LinkPicker;
 
 class PackageChecker
 {
     public function localeCollectionClassExists(): bool
     {
-        return class_exists(\Codedor\LocaleCollection\Facades\LocaleCollection::class);
+        return class_exists(\Wotz\LocaleCollection\Facades\LocaleCollection::class);
     }
 
     public function translateRouteFunctionExists(): bool

@@ -1,10 +1,7 @@
 <?php
 
-namespace Codedor\LinkPicker\Filament;
+namespace Wotz\LinkPicker\Filament;
 
-use Codedor\LinkPicker\Facades\LinkCollection;
-use Codedor\LinkPicker\Link;
-use Codedor\LocaleCollection\Facades\LocaleCollection;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
@@ -17,6 +14,9 @@ use Illuminate\Support\Optional;
 use Illuminate\Support\Reflector;
 use Illuminate\Support\Str;
 use ReflectionParameter;
+use Wotz\LinkPicker\Facades\LinkCollection;
+use Wotz\LinkPicker\Link;
+use Wotz\LocaleCollection\Facades\LocaleCollection;
 
 class LinkPickerInput extends Field
 {

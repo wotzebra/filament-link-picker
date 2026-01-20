@@ -1,15 +1,15 @@
 <?php
 
-namespace Codedor\LinkPicker\Providers;
+namespace Wotz\LinkPicker\Providers;
 
-use Codedor\LinkPicker\Facades\LinkCollection as FacadesLinkCollection;
-use Codedor\LinkPicker\Link;
-use Codedor\LinkPicker\LinkCollection;
 use Exception;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Wotz\LinkPicker\Facades\LinkCollection as FacadesLinkCollection;
+use Wotz\LinkPicker\Link;
+use Wotz\LinkPicker\LinkCollection;
 
 class LinkPickerServiceProvider extends PackageServiceProvider
 {

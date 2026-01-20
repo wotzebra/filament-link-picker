@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\LinkPicker\Tests\Fixtures\Models;
+namespace Wotz\LinkPicker\Tests\Fixtures\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

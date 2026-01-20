@@ -1,7 +1,7 @@
 <?php
 
-use Codedor\LinkPicker\Link;
-use Codedor\LinkPicker\LinkCollection;
+use Wotz\LinkPicker\Link;
+use Wotz\LinkPicker\LinkCollection;
 
 beforeEach(function () {
     $this->collection = new LinkCollection;

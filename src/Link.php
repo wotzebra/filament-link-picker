@@ -1,6 +1,6 @@
 <?php
 
-namespace Codedor\LinkPicker;
+namespace Wotz\LinkPicker;
 
 use Closure;
 use Filament\Forms\Components\Field;
