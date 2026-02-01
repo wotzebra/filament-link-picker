@@ -179,6 +179,7 @@ class Link
             return call_user_func($this->buildUsing, $this->parameters($parameters));
         }
 
+        $anchor = isset($parameters['anchor']) ? "#{$parameters['anchor']}" : null;
         $route = $this->resolveParameters($parameters);
 
         // If route binding fails
@@ -191,11 +192,11 @@ class Link
 
             // If the route cannot be found as a translated route, we'll try to find a normal route
             if (! is_null($route) && $route !== '#') {
-                return $route;
+                return "{$route}{$anchor}";
             }
         }
 
-        return route($this->routeName, $parameters);
+        return route($this->routeName, $parameters) . $anchor;
     }
 
     public function resolveParameters(array $parameters)
