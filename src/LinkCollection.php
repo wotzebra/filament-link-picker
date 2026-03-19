@@ -18,7 +18,7 @@ use Wotz\FilamentArchitect\Engines\Architect;
  * @template TKey of array-key
  * @template TValue
  *
- * @extends \Illuminate\Support\Collection<TKey, TValue>
+ * @extends Collection<TKey, TValue>
  */
 class LinkCollection extends Collection
 {

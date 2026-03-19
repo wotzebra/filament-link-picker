@@ -35,6 +35,10 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
+      - name: Remove dev dependencies incompatible with Laravel 13
+        if: matrix.laravel == '13.*'
+        run: composer remove wotz/laravel-translatable-routes --dev --no-interaction --no-update
+
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
