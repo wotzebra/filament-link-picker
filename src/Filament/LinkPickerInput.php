@@ -200,6 +200,7 @@ class LinkPickerInput extends Field
             ->add(
                 Checkbox::make('newTab')
                     ->label(__('filament-link-picker::input.new tab label'))
+                    ->default($link->getDefaultNewTab())
             );
     }
 

@@ -25,6 +25,8 @@ class Link
 
     protected ?array $withAnchors = null;
 
+    protected bool $defaultNewTab = false;
+
     public function __construct(
         protected string $routeName,
         protected ?string $label = null,
@@ -132,6 +134,18 @@ class Link
     public function getParameter(string $key): mixed
     {
         return $this->getParameters()[$key] ?? null;
+    }
+
+    public function defaultNewTab(bool $defaultNewTab = true): self
+    {
+        $this->defaultNewTab = $defaultNewTab;
+
+        return $this;
+    }
+
+    public function getDefaultNewTab(): bool
+    {
+        return $this->defaultNewTab;
     }
 
     public function buildUsing(Closure $closure)

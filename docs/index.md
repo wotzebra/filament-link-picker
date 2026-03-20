@@ -52,6 +52,21 @@ LinkCollection::addExternalLink(
 );
 ```
 
+The external link will have the "Open in new tab" checkbox checked by default.
+
+## Default new tab
+
+You can set any link to have the "Open in new tab" checkbox checked by default using the `defaultNewTab()` method:
+
+```php
+use Wotz\LinkPicker\Link;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class, 'show'])
+    ->name('home')
+    ->linkPicker(fn (Link $link) => $link->defaultNewTab());
+```
+
 ## Adding the 'mailto' link
 
 If you want to add a "mailto:" option in the link picker, you need to add a route like this, in your `AppServiceProvider`:
