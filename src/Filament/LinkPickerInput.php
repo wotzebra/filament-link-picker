@@ -5,6 +5,7 @@ namespace Wotz\LinkPicker\Filament;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Set;
 use Filament\Schemas\Components\Grid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
@@ -126,7 +127,11 @@ class LinkPickerInput extends Field
                     ]));
             })
             ->required()
-            ->live();
+            ->live()
+            ->afterStateUpdated(function (Set $set, ?string $state) {
+                $link = $state ? LinkCollection::firstByCleanRouteName($state) : null;
+                $set('newTab', $link?->getDefaultNewTab() ?? false);
+            });
 
         if (! $selectedRoute) {
             return collect([$routeField]);
@@ -200,7 +205,6 @@ class LinkPickerInput extends Field
             ->add(
                 Checkbox::make('newTab')
                     ->label(__('filament-link-picker::input.new tab label'))
-                    ->default($link->getDefaultNewTab())
             );
     }
 
