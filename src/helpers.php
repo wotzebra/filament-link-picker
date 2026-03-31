@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Wotz\LinkPicker\Facades\LinkCollection;
 use Wotz\LinkPicker\Link;
 
@@ -27,7 +28,8 @@ if (! function_exists('lroute')) {
         }
 
         if ($withTarget && ($link['newTab'] ?? false)) {
-            $slash = is_livewire_route(request()) ? '\\' : '';
+            $isLivewireRoute = Str::startsWith(request()->path(), 'livewire/') || request()->headers->has('X-LIVEWIRE');
+            $slash = $isLivewireRoute ? '\\' : '';
             $url .= $slash . '" target=' . $slash . '"_blank';
         }
 
