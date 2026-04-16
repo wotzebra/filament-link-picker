@@ -2,10 +2,13 @@
 
 namespace Wotz\LinkPicker\Filament;
 
+use Filament\Actions\Action;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Arr;
@@ -13,6 +16,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Optional;
 use Illuminate\Support\Reflector;
 use Illuminate\Support\Str;
+use Livewire\Component;
 use ReflectionParameter;
 use Wotz\LinkPicker\Facades\LinkCollection;
 use Wotz\LinkPicker\Link;
@@ -27,7 +31,7 @@ class LinkPickerInput extends Field
         parent::setUp();
 
         $this->registerActions([
-            \Filament\Actions\Action::make('link-picker-modal')
+            Action::make('link-picker-modal')
                 ->label(fn ($state) => $state
                     ? __('filament-link-picker::input.edit link')
                     : __('filament-link-picker::input.select link')
@@ -38,7 +42,7 @@ class LinkPickerInput extends Field
                 ->fillForm(fn (\Filament\Schemas\Components\Component $component): array => $component->getState() ?? [])
                 ->schema(function () {
                     return [
-                        Grid::make(1)->schema(function (\Livewire\Component $livewire) {
+                        Grid::make(1)->schema(function (Component $livewire) {
                             $mountedAction = Arr::last($livewire->mountedActions);
                             $mountedActionIndex = array_key_last($livewire->mountedActions);
                             $schema = $this->getFormSchemaForRoute($mountedAction['data']['route'] ?? null);
@@ -58,16 +62,16 @@ class LinkPickerInput extends Field
                         }),
                     ];
                 })
-                ->action(function (\Filament\Schemas\Components\Utilities\Set $set, array $data, \Filament\Schemas\Components\Component $component) {
+                ->action(function (Set $set, array $data, \Filament\Schemas\Components\Component $component) {
                     $set($component->getStatePath(false), $data);
                 }),
 
-            \Filament\Actions\Action::make('link-picker-clear')
+            Action::make('link-picker-clear')
                 ->label(__('filament-link-picker::input.remove link'))
                 ->icon('heroicon-o-trash')
                 ->iconSize('sm')
                 ->color('danger')
-                ->action(function (\Filament\Schemas\Components\Utilities\Set $set) {
+                ->action(function (Set $set) {
                     $set($this->getStatePath(false), null);
                 }),
         ]);
@@ -175,8 +179,8 @@ class LinkPickerInput extends Field
 
             $schema->add(
                 Select::make('parameters.anchor')
-                    ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => ! $get("parameters.{$anchorData['parameter']}"))
-                    ->options(function (\Filament\Schemas\Components\Utilities\Get $get) use ($anchorData) {
+                    ->hidden(fn (Get $get) => ! $get("parameters.{$anchorData['parameter']}"))
+                    ->options(function (Get $get) use ($anchorData) {
                         /**
                          * @var Model $record
                          */

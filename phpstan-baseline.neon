@@ -5,22 +5,14 @@ parameters:
 			count: 1
 			path: src/Filament/LinkPickerInput.php
 		-
-			message: "#^Access to an undefined property Livewire\\\\Component\\:\\:\\$mountedFormComponentActions\\.$#"
+			message: "#^Access to an undefined property Livewire\\\\Component\\:\\:\\$mountedActions\\.$#"
 			count: 2
-			path: src/Filament/LinkPickerInput.php
-		-
-			message: "#^Access to an undefined property Livewire\\\\Component\\:\\:\\$mountedFormComponentActionsData\\.$#"
-			count: 1
 			path: src/Filament/LinkPickerInput.php
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:getTranslation\\(\\)\\.$#"
 			count: 1
 			path: src/Filament/LinkPickerInput.php
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Support\\\\HigherOrderCollectionProxy\\<string, Codedor\\\\FilamentArchitect\\\\Engines\\\\Architect, Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\)\\, Codedor\\\\FilamentArchitect\\\\Engines\\\\Architect\\>\\>\\:\\:anchorList\\(\\)\\.$#"
+			message: "#^Call to an undefined method Illuminate\\\\Support\\\\HigherOrderCollectionProxy\\<string, Wotz\\\\FilamentArchitect\\\\Engines\\\\Architect, Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\)\\, Wotz\\\\FilamentArchitect\\\\Engines\\\\Architect\\>\\>\\:\\:anchorList\\(\\)\\.$#"
 			count: 1
 			path: src/LinkCollection.php
-		-
-			message: "#^Property Codedor\\\\LinkPicker\\\\Filament\\\\LinkPickerInput\\:\\:\\$view \\(view-string\\) does not accept default value of type string\\.$#"
-			count: 1
-			path: src/Filament/LinkPickerInput.php
