@@ -48,6 +48,7 @@ class LinkCollection extends Collection
             Link::make($routeName, $label)
                 ->group($group)
                 ->description($description)
+                ->defaultNewTab()
                 ->schema(fn () => TextInput::make('url')->prefix('https://')->required())
                 ->buildUsing(function (Link $link) {
                     $url = $link->getParameter('url');

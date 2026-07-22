@@ -130,7 +130,11 @@ class LinkPickerInput extends Field
                     ]));
             })
             ->required()
-            ->live();
+            ->live()
+            ->afterStateUpdated(function (Set $set, ?string $state) {
+                $link = $state ? LinkCollection::firstByCleanRouteName($state) : null;
+                $set('newTab', $link?->getDefaultNewTab() ?? false);
+            });
 
         if (! $selectedRoute) {
             return collect([$routeField]);
